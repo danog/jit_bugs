@@ -4,10 +4,10 @@ standalone=$PWD/bugs/wrap.php
 
 cd /tmp
 
-rm -rf psalm
+rm -rf psalm_5
 
-git clone https://github.com/vimeo/psalm
-cd psalm
+git clone https://github.com/vimeo/psalm psalm_5
+cd psalm_5
 git checkout 7428e49b115a2a837aa29cf0fafd0ca902fe2457
 
 git branch -D master || true
