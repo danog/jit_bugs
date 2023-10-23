@@ -10,6 +10,8 @@ export PSALM_ALLOW_XDEBUG=1
 
 composer i --ignore-platform-reqs
 
+echo "About to run phpunit"
+
 php vendor/bin/phpunit --debug tests/MagicMethodAnnotationTest.php
 
 echo "OK, no bugs!"

@@ -4,10 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV CC=clang-16
 ENV CXX=clang++-16
-ENV CFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC'
-ENV CPPFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC'
-ENV CXXFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC'
-ENV LDFLAGS='-g -fsanitize=address -shared-libasan -Wl,-rpath=/usr/lib/llvm-16/lib/clang/16/lib/linux/'
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/llvm-16/lib/clang/16/lib/linux/"
 
@@ -34,7 +30,7 @@ RUN true \
 		systemtap-sdt-dev libssl-dev \
 		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 \
     \
-    && git clone --depth 1 https://github.com/php/php-src -b PHP-8.2 && cd php-src \
+    && git clone --depth 1 https://github.com/php/php-src && cd php-src \
     \
     && ./buildconf \
 	&& ./configure --prefix=/usr \
@@ -50,6 +46,11 @@ RUN true \
 		--with-password-argon2=/usr --with-external-pcre --with-mhash=/usr --with-libxml \
 		--enable-session --with-sodium --with-zlib=/usr --with-zlib-dir=/usr \
 		--enable-pcntl --with-libedit=shared,/usr \
+    \
+    && export CFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
+    && export CPPFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
+    && export CXXFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
+    && export LDFLAGS='-g -fsanitize=address -shared-libasan -Wl,-rpath=/usr/lib/llvm-16/lib/clang/16/lib/linux/' \
     \
 	&& make -j100 \
 	&& make install \
