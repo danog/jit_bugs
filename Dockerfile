@@ -42,7 +42,7 @@ RUN true \
 		--libdir=/usr/lib/php --libexecdir=/usr/lib/php --datadir=/usr/share/php/8.2 \
 		--sysconfdir=/etc --localstatedir=/var --mandir=/usr/share/man \
 		--enable-debug --enable-address-sanitizer --disable-rpath --disable-static \
-		--enable-filter --with-openssl \
+		--enable-filter --with-openssl --enable-mbstring \
 		--with-password-argon2=/usr --with-external-pcre --with-mhash=/usr --with-libxml \
 		--enable-session --with-sodium --with-zlib=/usr --with-zlib-dir=/usr \
 		--enable-pcntl --with-libedit=shared,/usr \
@@ -63,3 +63,5 @@ RUN php -r "readfile('https://getcomposer.org/installer');" | php \
 
 ENV USE_ZEND_ALLOC=0
 ENV PSALM_ALLOW_XDEBUG=1
+
+WORKDIR /app
