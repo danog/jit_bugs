@@ -22,7 +22,7 @@ composer i --ignore-platform-reqs
 
 echo "About to run phpunit"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/vendor/bin/phpunit --debug tests/MagicMethodAnnotationTest.php
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/vendor/bin/phpunit --debug
 
 echo "About to run composer"
 
