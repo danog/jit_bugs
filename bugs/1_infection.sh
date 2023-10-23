@@ -8,9 +8,8 @@ cd /tmp
 
 rm -rf infection
 
-git clone https://github.com/infection/infection
+git clone https://github.com/infection/infection -b 0.27.4
 cd infection
-git checkout fe7cbe78e5838608df42ec7688d353ef1d631fee
 
 composer i --ignore-platform-reqs
 

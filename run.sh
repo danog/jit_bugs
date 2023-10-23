@@ -3,5 +3,6 @@
 docker build . -t asan_tests
 
 for f in bugs/*sh; do
-    $f || echo "!!! $f failed !!!"
+    echo "!!! About to run $f !!!"
+    $f || echo "!!! Failed to run $f !!!"
 done

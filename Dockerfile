@@ -30,7 +30,7 @@ RUN true \
 		systemtap-sdt-dev libssl-dev \
 		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev \
     \
-    && git clone --depth 1 https://github.com/php/php-src && cd php-src \
+    && git clone --depth 1 https://github.com/php/php-src -b PHP-8.1 && cd php-src \
     \
     && ./buildconf \
 	&& ./configure --prefix=/usr \

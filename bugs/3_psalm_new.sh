@@ -2,11 +2,15 @@
 
 cd /tmp
 
-rm -rf psalm
+rm -rf psalm_3
 
-git clone https://github.com/nicelocal/psalm -b rector_pass --depth 1
-cd psalm
+git clone https://github.com/nicelocal/psalm -b rector_pass --depth 1 psalm_3
+cd psalm_3
 git checkout 9d3fee47afa90f3eb53043a26f01e587d2dd34e5
+
+git branch -D master || true
+git branch master
+git checkout master
 
 export PSALM_ALLOW_XDEBUG=1
 
