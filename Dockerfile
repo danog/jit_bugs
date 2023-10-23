@@ -28,9 +28,9 @@ RUN true \
         pkg-config autoconf bison re2c \
         libxml2-dev libsqlite3-dev \
 		systemtap-sdt-dev libssl-dev \
-		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev \
-    \
-    && git clone --depth 1 https://github.com/php/php-src -b PHP-8.1 && cd php-src \
+		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev
+
+RUN git clone https://github.com/php/php-src -b master && cd php-src \
     \
     && ./buildconf \
 	&& ./configure --prefix=/usr \
@@ -61,7 +61,10 @@ ADD php.ini /etc/php/php.ini
 RUN php -r "readfile('https://getcomposer.org/installer');" | php \
 	&& mv composer.phar /usr/bin/composer
 
+RUN git config --global --add safe.directory /app
+
 ENV USE_ZEND_ALLOC=0
 ENV PSALM_ALLOW_XDEBUG=1
+ENV ASAN_OPTIONS="detect_leaks=0:exitcode=139"
 
 WORKDIR /app

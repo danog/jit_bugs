@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+standalone=$PWD/bugs/wrap.php
+
 cd /tmp
 
 rm -rf psalm
@@ -12,18 +14,20 @@ git branch -D master || true
 git branch master
 git checkout master
 
+cp $standalone .
+
 export PSALM_ALLOW_XDEBUG=1
 
 composer i --ignore-platform-reqs
 
 echo "About to run phpunit"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/vendor/bin/phpunit --debug tests/MagicMethodAnnotationTest.php
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/vendor/bin/phpunit --debug tests/MagicMethodAnnotationTest.php
 
 echo "About to run composer"
 
 rm -rf vendor
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests composer update
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /usr/bin/composer update
 
 echo "OK, no bugs!"
