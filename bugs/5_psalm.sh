@@ -28,6 +28,6 @@ echo "About to run composer"
 
 rm -rf vendor
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /usr/bin/composer update
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /usr/bin/composer update
 
 echo "OK, no bugs!"
