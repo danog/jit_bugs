@@ -18,7 +18,7 @@ cp $standalone .
 
 echo "About to run the standalone test"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/2_infection.php
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/1_infection.php
 
 echo "About to run the testsuite"
 
