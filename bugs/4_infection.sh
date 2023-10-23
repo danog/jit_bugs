@@ -3,7 +3,7 @@
 #!/bin/bash -e
 
 wrap=$PWD/bugs/wrap.php
-standalone=$PWD/bugs/1_infection.php
+standalone=$PWD/bugs/infection.php
 
 cd /tmp
 
@@ -19,7 +19,7 @@ cp $wrap .
 
 echo "About to run the standalone test"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/1_infection.php
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/infection.php
 
 echo "About to run the testsuite"
 
