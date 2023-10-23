@@ -7,7 +7,7 @@ cd /tmp
 rm -rf jit_test
 
 wget https://paste.daniil.it/jit_1.tar.xz -c
-tar -xvf jit_1.tar.xz
+tar -xf jit_1.tar.xz
 
 cd jit_test
 
