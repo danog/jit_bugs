@@ -4,9 +4,9 @@
 
 cd /tmp
 
-git clone https://github.com/infection/infection --depth 1
+git clone https://github.com/infection/infection
 cd infection
-git checkout 2789fdd689689b0c85f2c0ae9db50c8d2b39fb92
+git checkout fe7cbe78e5838608df42ec7688d353ef1d631fee
 
 composer i --ignore-platform-reqs
 
