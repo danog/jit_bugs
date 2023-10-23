@@ -28,7 +28,7 @@ RUN true \
         pkg-config autoconf bison re2c \
         libxml2-dev libsqlite3-dev \
 		systemtap-sdt-dev libssl-dev \
-		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 \
+		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev \
     \
     && git clone --depth 1 https://github.com/php/php-src && cd php-src \
     \
