@@ -53,8 +53,7 @@ RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
     && export LDFLAGS='-g -fsanitize=address -shared-libasan -Wl,-rpath=/usr/lib/llvm-16/lib/clang/16/lib/linux/' \
     \
 	&& make -j100 \
-	&& make install \
-    && cd .. && rm -rf php-src
+	&& make install
 
 ADD php.ini /etc/php/php.ini
 

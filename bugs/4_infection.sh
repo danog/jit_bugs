@@ -1,9 +1,8 @@
 #!/bin/bash -e
 
-#!/bin/bash -e
-
 wrap=$PWD/bugs/wrap.php
 standalone=$PWD/bugs/infection.php
+refactor=$PWD/refactor.php
 
 cd /tmp
 
@@ -13,6 +12,8 @@ git clone https://github.com/infection/infection -b 0.27.4
 cd infection
 
 composer i --ignore-platform-reqs
+
+php $refactor
 
 cp $standalone .
 cp $wrap .

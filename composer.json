@@ -1,0 +1,17 @@
+{
+    "name": "daniil/jit_bugs",
+    "autoload": {
+        "psr-4": {
+            "Daniil\\JitBugs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "require": {
+        "nikic/php-parser": "^4.17"
+    }
+}

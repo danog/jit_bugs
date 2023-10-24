@@ -2,6 +2,8 @@
 
 standalone=$PWD/bugs/wrap_madeline.php
 
+refactor=$PWD/refactor.php
+
 cd /tmp
 
 rm -rf jit_test
@@ -13,4 +15,6 @@ cd jit_test
 
 cp $standalone wrap.php
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php -d opcache.blacklist_filename=b.txt -f /app/wrap.php test.php
+php $refactor
+
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -d opcache.blacklist_filename=b.txt -f /app/wrap.php test.php
