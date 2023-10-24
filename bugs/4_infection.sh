@@ -19,13 +19,21 @@ cp $wrap .
 
 echo "About to run the standalone test"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/infection.php
+EXIT_CODE=0
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/infection.php || EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo "Failed, exit code $EXIT_CODE"
+    exit $EXIT_CODE
+fi
 
 echo "About to run the testsuite"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php vendor/bin/phpunit || EXIT_CODE=$?
+EXIT_CODE=0
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php vendor/bin/phpunit || EXIT_CODE=$?
 
 if [ $EXIT_CODE -gt 128 ]; then
+    echo "Failed, exit code $EXIT_CODE"
     exit $EXIT_CODE
 fi
 

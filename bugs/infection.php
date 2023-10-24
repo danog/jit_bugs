@@ -78,3 +78,5 @@ for ($x = 0; $x < 10000; $x++) {
         test_it_can_create_a_config($a);
     }
 }
+
+echo "OK, done!";
