@@ -16,3 +16,4 @@ Tested on fa218eab4a9b5304afb871a4405546068cb65008
 6. php-parser (unit): always fails
 7. Psalm (master, unit): always fails
 8. Psalm (patched master, unit): always fails
+9. Composer: always fails
