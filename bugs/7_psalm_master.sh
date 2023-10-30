@@ -22,6 +22,6 @@ composer i --ignore-platform-reqs
 
 echo "About to run psalm"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /app/psalm --no-cache
+docker run -v $PWD:/app --rm --privileged -it asan_tests bash -c 'export USE_ZEND_ALLOC=1; /usr/bin/php --repeat 2 -f /app/wrap.php /app/psalm --no-cache --threads=100'
 
 echo "OK, no bugs!"
