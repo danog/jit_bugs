@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+composer update
+
 wrap=$PWD/bugs/wrap.php
 standalone=$PWD/bugs/infection.php
 refactor=$PWD/refactor.php

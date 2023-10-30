@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+composer update
+
 standalone=$PWD/bugs/wrap_madeline.php
 
 refactor=$PWD/refactor.php
