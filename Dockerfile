@@ -7,6 +7,8 @@ ENV CXX=clang++-16
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/llvm-16/lib/clang/16/lib/linux/"
 
+ADD php.ini /etc/php/php.ini
+
 RUN true \
 	&& apt update \
 	&& apt install -y --no-install-recommends \
@@ -56,8 +58,6 @@ RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
     \
 	&& make -j100 \
 	&& make install && echo owo
-
-ADD php.ini /etc/php/php.ini
 
 RUN php -r "readfile('https://getcomposer.org/installer');" | php \
 	&& mv composer.phar /usr/bin/composer
