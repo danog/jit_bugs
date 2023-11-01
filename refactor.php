@@ -37,7 +37,7 @@ foreach ($i as [$file]) {
         if ($f->stmts === null) continue;
         $f->stmts = [new Foreach_(
             new Array_([new ArrayItem(new LNumber(0))]),
-            new Variable('_'),
+            new Variable('____'),
             ['stmts' => $f->stmts]
         )];
     }
