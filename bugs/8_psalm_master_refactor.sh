@@ -28,7 +28,6 @@ echo "About to run psalm"
 php $refactor
 
 sed 's:findUnusedCode=:cacheDirectory="/tmp/psalm" findUnusedCode=:g' -i psalm.xml.dist
-sed 's/error_log[(]/exit(/g' -i src/Psalm/Internal/Fork/Pool.php
 
 sleep 3
 

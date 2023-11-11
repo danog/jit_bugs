@@ -15,7 +15,6 @@ git branch master
 git checkout master
 
 sed 's:findUnusedCode=:cacheDirectory="/tmp/psalm" findUnusedCode=:g' -i psalm.xml.dist
-sed 's/error_log[(]/exit(/g' -i src/Psalm/Internal/Fork/Pool.php
 
 export PSALM_ALLOW_XDEBUG=1
 
