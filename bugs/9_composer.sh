@@ -18,6 +18,6 @@ cp $c composer.json
 
 echo "About to run composer"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /usr/bin/composer update
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /usr/bin/composer update --ignore-platform-reqs
 
 echo "OK, no bugs!"

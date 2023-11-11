@@ -27,6 +27,11 @@ echo "About to run psalm"
 
 php $refactor
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /app/psalm --no-cache
+sed 's:findUnusedCode=:cacheDirectory="/tmp/psalm" findUnusedCode=:g' -i psalm.xml.dist
+sed 's/error_log[(]/exit(/g' -i src/Psalm/Internal/Fork/Pool.php
+
+sleep 3
+
+docker run -v $PWD:/app --rm --privileged -it asan_tests bash -c 'export USE_ZEND_ALLOC=1; /usr/bin/php --repeat 2 -f /app/wrap.php /app/psalm --no-cache'
 
 echo "OK, no bugs!"

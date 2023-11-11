@@ -20,9 +20,13 @@ cp $standalone .
 
 composer i --ignore-platform-reqs
 
+sed 's:findUnusedCode=:cacheDirectory="/tmp/psalm" findUnusedCode=:g' -i psalm.xml.dist
+
 echo "About to run psalm"
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php /app/wrap.php /app/psalm --no-cache
+sleep 3
+
+docker run -v $PWD:/app --rm --privileged -it asan_tests /usr/bin/php --repeat 2 -f /app/wrap.php /app/psalm --no-cache
 
 echo "About to run composer"
 

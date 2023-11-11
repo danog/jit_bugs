@@ -1,8 +1,8 @@
 <?php
 
-register_shutdown_function(function () {
+$pid = getmypid();
+register_shutdown_function(function () use ($pid) {
     $status = opcache_get_status(false);
-    var_dump($status);
 
     $ok = true;
     if ($status["memory_usage"]["free_memory"] < 10*1024*1024) {
@@ -23,7 +23,11 @@ register_shutdown_function(function () {
     }
 
     unset($status);
-    gc_collect_cycles();
+    while (gc_collect_cycles());
+
+    if ($pid === getmypid()) {
+        `rm -rf /tmp/psalm`;
+    }
 
     if (!$ok) die(139);
 });
