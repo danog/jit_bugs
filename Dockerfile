@@ -7,8 +7,6 @@ ENV CXX=clang++-16
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/llvm-16/lib/clang/16/lib/linux/"
 
-ADD php.ini /etc/php/php.ini
-
 RUN true \
 	&& apt update \
 	&& apt install -y --no-install-recommends \
@@ -33,7 +31,7 @@ RUN true \
 		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev \
 		gdb libcapstone-dev
 
-RUN git clone https://github.com/php/php-src -b PHP-8.3 --depth 1 && cd php-src \
+RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
     && ./buildconf \
 	&& ./configure --prefix=/usr \
 		--includedir=/usr/include --mandir=/usr/share/man --infodir=/usr/share/info --sysconfdir=/etc \
@@ -57,6 +55,8 @@ RUN git clone https://github.com/php/php-src -b PHP-8.3 --depth 1 && cd php-src 
     \
 	&& make -j100 \
 	&& make install
+
+ADD php.ini /etc/php/php.ini
 
 RUN php -r "readfile('https://getcomposer.org/installer');" | php \
 	&& mv composer.phar /usr/bin/composer
