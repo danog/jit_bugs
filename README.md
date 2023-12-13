@@ -6,8 +6,6 @@ Edit the branch in `Dockerfile:33`
 
 ## Tests
 
-Tested on fa218eab4a9b5304afb871a4405546068cb65008
-
 1. Composer: Fixed
 2. Psalm: Fixed
 3. MadelineProto: Fixed
@@ -17,6 +15,7 @@ Tested on fa218eab4a9b5304afb871a4405546068cb65008
 7. Psalm (master, unit): Fixed
 8. Psalm (patched master, unit): Fixed
 9. Composer: Fixed
-10. Amphp: Always fails
-11. Reactphp: Always fails
-12. Amphp: Always fails
+10. Amphp: Fixed
+11. Reactphp: Fixed
+12. Amphp: Fixed
+13. Classmap: always fails
