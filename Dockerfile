@@ -2,10 +2,10 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV CC=clang-16
-ENV CXX=clang++-16
+ENV CC=clang-19
+ENV CXX=clang++-19
 
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/llvm-16/lib/clang/16/lib/linux/"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/llvm-19/lib/clang/19/lib/linux/"
 
 RUN true \
 	&& apt update \
@@ -15,7 +15,7 @@ RUN true \
 		make pkg-config binutils wget \
 	&& wget https://apt.llvm.org/llvm.sh \
 	&& chmod +x llvm.sh \
-	&& ./llvm.sh 16 all \
+	&& ./llvm.sh 19 all \
     && apt update \
 	\
 	\
@@ -28,7 +28,7 @@ RUN true \
         pkg-config autoconf bison re2c \
         libxml2-dev libsqlite3-dev \
 		systemtap-sdt-dev libssl-dev \
-		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-16 libonig-dev \
+		libpcre2-dev libargon2-dev libedit-dev libsodium-dev llvm-19 libonig-dev \
 		gdb libcapstone-dev
 
 RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
@@ -51,7 +51,7 @@ RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
     && export CFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
     && export CPPFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
     && export CXXFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
-    && export LDFLAGS='-g -fsanitize=address -shared-libasan -Wl,-rpath=/usr/lib/llvm-16/lib/clang/16/lib/linux/' \
+    && export LDFLAGS='-g -fsanitize=address -shared-libasan -Wl,-rpath=/usr/lib/llvm-19/lib/clang/19/lib/linux/' \
     \
 	&& make -j100 \
 	&& make install
