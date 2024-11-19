@@ -19,6 +19,7 @@ register_shutdown_function(function () use ($pid) {
     }
     if (!$status["jit"]["on"]) {
         echo "JIT is not enabled!".PHP_EOL;
+        var_dump($status);
         $ok = false;
     }
 
