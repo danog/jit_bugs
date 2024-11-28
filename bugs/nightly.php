@@ -45,6 +45,27 @@ $repos["psalm"] = [
     2
 ];
 
+$repos["phpseclib/phpseclib"] = [
+    "https://github.com/phpseclib/phpseclib",
+    "master",
+    null,
+    function (): iterable {
+        $it = new RecursiveDirectoryIterator("tests");
+        /** @var SplFileInfo $file */
+        foreach(new RecursiveIteratorIterator($it) as $file) {
+            if ($file->getExtension() == 'php' && ctype_upper($file->getBasename()[0])) {
+                yield [
+                    getcwd()."/vendor/bin/phpunit",
+                    "-c",
+                    getcwd()."/tests/phpunit.xml",
+                    $file->getRealPath(), 
+                ];
+            }
+        }
+    },
+    2
+];
+
 $finalStatus = 0;
 $parentPids = [];
 
