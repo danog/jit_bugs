@@ -16,5 +16,5 @@ echo "About to run psalm"
 
 sleep 3
 
-docker run -v $PWD:/app --rm --privileged -it asan_tests bash -c 'export USE_ZEND_ALLOC=0; /usr/bin/php --repeat 2 -f /app/wrap.php vendor/bin/phpunit tests/FileUpdates/ErrorAfterUpdateTest.php'
+docker run -v $PWD:/app --rm --privileged -it asan_tests bash -c 'export USE_ZEND_ALLOC=0; /usr/bin/php --repeat 2 -f /app/wrap.php vendor/bin/phpunit tests/Template/TraitTemplateTest.php'
 echo "OK, no bugs!"

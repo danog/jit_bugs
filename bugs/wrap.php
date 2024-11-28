@@ -26,9 +26,9 @@ register_shutdown_function(function () use ($pid) {
     unset($status);
     while (gc_collect_cycles());
 
-    if ($pid === getmypid()) {
-        `rm -rf /tmp/psalm`;
-    }
+    //if ($pid === getmypid()) {
+        //`rm -rf /tmp/psalm`;
+    //}
 
     if (!$ok) die(139);
 });
