@@ -45,7 +45,7 @@ $repos["psalm"] = [
     2
 ];
 
-$repos["phpseclib/phpseclib"] = [
+$repos["phpseclib"] = [
     "https://github.com/phpseclib/phpseclib",
     "master",
     null,
@@ -185,7 +185,7 @@ foreach ($repos as $dir => [$repo, $branch, $prepare, $command, $repeat]) {
         }
 
         $output = sys_get_temp_dir()."/out_{$dir}_$idx.txt";
-        
+
         $p = proc_open($cmd, [
             ["pipe", "r"], 
             ["file", $output, "a"],
