@@ -1,4 +1,4 @@
 #!/bin/bash -e
 
-docker build . -t asan_tests
+docker build --no-cache . -t asan_tests
 

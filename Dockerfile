@@ -46,7 +46,7 @@ RUN git clone https://github.com/php/php-src -b master --depth 1 && cd php-src \
 		--with-password-argon2=/usr --with-external-pcre --with-mhash=/usr --with-libxml \
 		--enable-session --with-sodium --with-zlib=/usr --with-zlib-dir=/usr \
 		--enable-pcntl --with-libedit=shared,/usr \
-		--with-capstone \
+		--with-capstone --with-pear \
     \
     && export CFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
     && export CPPFLAGS='-g -fsanitize=address -shared-libasan -fno-sanitize-recover -DZEND_TRACK_ARENA_ALLOC' \
